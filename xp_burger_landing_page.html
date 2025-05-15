@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>XP Tracker - XP Burger</title>
+  <style>
+    body {
+      background-color: #0c0c0c;
+      color: #00ffcc;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px;
+    }
+
+    .container {
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #00ffcc;
+    }
+
+    input, button {
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 16px;
+      background-color: #2e2e2e;
+      color: #00ffcc;
+      border: none;
+      border-radius: 6px;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 20px;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Digite seu Código XP:</h2>
+    <input id="codigo" placeholder="Ex: XP-0001" />
+    <button onclick="buscarXP()">Ver Pontuação</button>
+    <div class="result" id="resultado"></div>
+  </div>
+
+  <script>
+    const dadosClientes = {
+      "XP-0001": {
+        nome: "João Gamer",
+        xp: 170,
+        nivel: 1,
+        itens: "Gotham Burger + Combo",
+        data: "2025-05-15"
+      },
+      "XP-0002": {
+        nome: "Maria Otaku",
+        xp: 80,
+        nivel: 1,
+        itens: "Vault 101",
+        data: "2025-05-15"
+      },
+      "XP-0003": {
+        nome: "Carlos Player",
+        xp: 70,
+        nivel: 1,
+        itens: "Sennin Burger + Extra",
+        data: "2025-05-15"
+      }
+    };
+
+    function buscarXP() {
+      const codigo = document.getElementById("codigo").value.trim().toUpperCase();
+      const resultado = document.getElementById("resultado");
+
+      if (dadosClientes[codigo]) {
+        const user = dadosClientes[codigo];
+        resultado.innerText = `👤 Nome: ${user.nome}
+⭐ XP Total: ${user.xp}
+🏅 Nível: ${user.nivel}
+🍔 Pedido: ${user.itens}
+📅 Último Pedido: ${user.data}`;
+      } else {
+        resultado.innerText = "❌ Código não encontrado!";
+      }
+    }
+  </script>
+</body>
+</html>
